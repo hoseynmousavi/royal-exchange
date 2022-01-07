@@ -11,6 +11,7 @@ function LoginInputPhone()
 {
     const [phone, setPhone] = useState(null)
     const [acceptRules, setAcceptRules] = useState(false)
+    const disable = !phone || !acceptRules
 
     OnKeyDown({key: "Enter", callback: goToCode})
 
@@ -21,7 +22,7 @@ function LoginInputPhone()
 
     function goToCode()
     {
-        if (phone) window.history.pushState("", "", urlConstant.loginVerifyCode(phone))
+        if (!disable) window.history.pushState("", "", urlConstant.loginVerifyCode(phone))
     }
 
     function toggleRules()
@@ -38,7 +39,7 @@ function LoginInputPhone()
                 <PhoneInput onChange={onPhoneChange}/>
             </div>
             <div className="login-submit">
-                <Button type="first" disable={!phone || !acceptRules} onClick={goToCode}>{textConstant.continueBtn}</Button>
+                <Button type="first" disable={disable} onClick={goToCode}>{textConstant.continueBtn}</Button>
             </div>
             <div className="login-footer">
                 <RadioItem className="login-footer-cont" isRtl name={textConstant.acceptRules} onClick={toggleRules} isActive={acceptRules}/>
