@@ -49,7 +49,7 @@ function AllPricesList({currencies, golds})
                             <div className="all-prices-table-title-item bigger">نام ارز</div>
                             <div className="all-prices-table-title-item">خرید</div>
                             <div className="all-prices-table-title-item">فروش</div>
-                            <div className="all-prices-table-title-item">حواله</div>
+                            {selectedTab === "currency" && <div className="all-prices-table-title-item">حواله</div>}
                             <div className="all-prices-table-title-item less title"/>
                         </div>
                         {
@@ -61,7 +61,7 @@ function AllPricesList({currencies, golds})
                                     </div>
                                     <div className="all-prices-table-title-item">{showPrice(item.buyPrice)}</div>
                                     <div className="all-prices-table-title-item">{showPrice(item.sellPrice)}</div>
-                                    <div className="all-prices-table-title-item">{showPrice(item.remittancePrice)}</div>
+                                    {selectedTab === "currency" && <div className="all-prices-table-title-item">{showPrice(item.remittancePrice)}</div>}
                                     <Material className="all-prices-table-title-item less" onClick={togglePin(item)}>
                                         {item.isPin ? <PinSvg className="all-prices-table-title-pin"/> : <UnPinSvg className="all-prices-table-title-pin"/>}
                                     </Material>
