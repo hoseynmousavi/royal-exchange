@@ -1,0 +1,117 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--header-z-index);
+  background-color: var(--second-background-color);
+  height: var(--header-full-height);
+}
+
+.header-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--header-content-height) + 4px);
+  background-color: var(--first-color);
+  border-radius: 0 0 calc(var(--third-radius) + 1px) calc(var(--third-radius) + 1px);
+  opacity: 0.3;
+}
+
+.header-content {
+  position: relative;
+  height: var(--header-content-height);
+  background-color: var(--first-color);
+  background-image: url("../media/images/background.png");
+  border-radius: 0 0 var(--third-radius) var(--third-radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-logo {
+  width: 48px;
+  margin-top: 12px;
+}
+
+.header-items {
+  margin-top: 8px;
+}
+
+.header-user {
+  vertical-align: top;
+  width: var(--btn-input-height);
+  height: var(--btn-input-height);
+}
+
+.header-back {
+  position: absolute;
+  left: var(--mobile-first-grid-padding);
+  top: calc(var(--header-content-height) / 3);
+  font-family: my-font-bold, serif;
+  font-size: var(--title-font);
+  color: var(--solid-light);
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: var(--first-radius);
+  margin-top: -8px;
+  margin-left: -8px;
+  cursor: pointer;
+}
+
+.header-back-icon {
+  width: 24px;
+  height: 24px;
+  transform: rotate(180deg);
+
+  path {
+    stroke: var(--solid-light);
+  }
+}
+
+.header-date {
+  display: inline-block;
+  vertical-align: top;
+  background-color: var(--first-background-color);
+  border-radius: var(--third-radius);
+  border: 1px solid var(--first-text-color);
+  padding: 8px;
+  height: var(--btn-input-height);
+  margin-right: 20px;
+}
+
+.header-date-title {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: top;
+  border-left: 1px solid var(--first-text-color);
+  height: 100%;
+  font-family: my-font-bold, serif;
+  font-size: var(--title-font);
+  margin-left: 10px;
+  padding-left: 10px;
+  width: 75px;
+}
+
+.header-date-desc {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  vertical-align: top;
+  height: 100%;
+  font-size: var(--small-font);
+  width: 75px;
+
+  &.is-loading {
+    justify-content: center;
+  }
+}
+
+.header-date-desc-date {
+  font-size: var(--tiny-font);
+  margin-bottom: 3px;
+}

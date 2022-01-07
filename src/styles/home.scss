@@ -1,0 +1,13 @@
+.home-main {
+  padding-top: var(--header-full-height);
+  padding-bottom: var(--nav-height);
+  min-height: var(--full-height);
+  background-color: var(--second-background-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-main-content {
+  width: 100%;
+}

@@ -1,0 +1,13 @@
+.profile {
+  padding: 30px var(--mobile-first-grid-padding);
+}
+
+.profile-logout {
+  font-family: my-font-bold, serif;
+  font-size: var(--title-font);
+  padding: 8px 16px;
+  border-radius: var(--first-radius);
+  margin: 24px auto;
+  color: var(--toast-fail-text);
+  cursor: pointer;
+}

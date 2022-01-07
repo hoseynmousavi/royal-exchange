@@ -1,0 +1,22 @@
+.about-page-title {
+  font-size: var(--big-font);
+  text-align: center;
+}
+
+.about-page-desc {
+  background-color: var(--first-background-color);
+  border-radius: var(--first-radius);
+  border: 1px solid var(--first-text-color);
+  margin: var(--mobile-first-solid-padding);
+  padding: 16px;
+}
+
+.about-page-link {
+  display: block;
+  margin: auto;
+  color: var(--link-color);
+  font-family: my-font-bold, serif;
+  text-align: center;
+  font-size: var(--large-font);
+  text-decoration: underline;
+}

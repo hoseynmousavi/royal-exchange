@@ -1,0 +1,33 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  background-color: var(--first-color);
+  border-radius: var(--third-radius) var(--third-radius) 0 0;
+  display: flex;
+  overflow: hidden;
+}
+
+.footer-item {
+  width: 33%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-item-icon {
+  width: 26px;
+  height: 26px;
+}
+
+.footer-item-text {
+  margin-bottom: -2px;
+  margin-top: 8px;
+  font-size: var(--tiny-font);
+  color: var(--solid-light);
+  font-family: my-font-bold, serif;
+}
