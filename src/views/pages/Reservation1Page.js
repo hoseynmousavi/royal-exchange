@@ -16,6 +16,7 @@ function Reservation1Page({prices})
     const {lastUpdateDateString, lastUpdateTimeString} = timeBox || {}
     const [values, setValues] = useState({})
     const disable = !(values.productId && values.quantity && values.dateTimeId)
+    const disableDate = !(values.productId && values.quantity)
     const [isBuy, setIsBuy] = useState(true)
     const {productTypes} = GetReserveTypes()
     const resetDate = useRef(null)
@@ -84,6 +85,7 @@ function Reservation1Page({prices})
                                 full_title="تاریخ و ساعت را انتخاب کنید"
                                 items={dateItems}
                                 onChange={changeField}
+                                disabled={disableDate}
                         />
                         <Button className="reserve-btn" disable={disable} onClick={submit}>
                             مرحله بعد
