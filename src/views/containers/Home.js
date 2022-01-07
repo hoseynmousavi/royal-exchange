@@ -15,7 +15,7 @@ function Home()
 {
     const {prices, isLoading} = GetPrices()
     return (
-        <Switch>
+        <Switch desktopAnime>
             <Route exact path={urlConstant.aboutUs} render={() => <AboutPage prices={prices}/>}/>
             <Route exact path={urlConstant.contactUs} render={() => <ContactPage prices={prices}/>}/>
             <Route exact path={urlConstant.reserve1} render={() => <Reservation1Page prices={prices}/>}/>

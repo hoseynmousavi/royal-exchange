@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from "react"
 import checkViewPort from "../../helpers/checkViewPort"
 import Resize from "../../helpers/Resize"
 
-function Switch({children})
+function Switch({children, desktopAnime})
 {
     const [state, setState] = useState({showChildIndex: null, location: null})
     const {showChildIndex, location} = state
@@ -67,7 +67,7 @@ function Switch({children})
                 {
                     currentIndex.current = showChildIndexTemp
                     const scroll = getScroll(type)
-                    if (clientWidth <= 480)
+                    if (clientWidth <= 480 && !desktopAnime)
                     {
                         if (type === "popstate") mobileBack(showChildIndexTemp, locationTemp, scroll)
                         else mobileForward(showChildIndexTemp, locationTemp, scroll)
