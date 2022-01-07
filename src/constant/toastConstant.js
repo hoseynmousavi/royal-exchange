@@ -8,6 +8,7 @@ const toastConstant = {
     unValidPassword: "پسورد انتخابی باید حداقل ۶ کاراکتر باشد",
     profileUpdated: "پروفایل با موفقیت بروز شد",
     reserveSuccess: "نوبت با موفقیت ثبت شد",
+    selectFieldsFirst: "لطفا ابتدا ارز و تعداد را مشخص کنید",
 
     tokenExpired: "ورود شما منقضی شده است، دوباره وارد شوید.",
     requestCancel: "req_canceled",

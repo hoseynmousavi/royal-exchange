@@ -153,7 +153,11 @@ function VerticalPanel({children, className, close, statusBarColor, dontPush})
 
     function goBackIfNotHiding()
     {
-        if (!isHiding.current) goBack()
+        if (!isHiding.current)
+        {
+            isHiding.current = true
+            goBack()
+        }
     }
 
     return (

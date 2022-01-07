@@ -9,6 +9,9 @@ import Input from "../components/Input"
 import GetReserveDate from "../../helpers/GetReserveDate"
 import urlConstant from "../../constant/urlConstant"
 import createQueryString from "../../helpers/createQueryString"
+import toastManager from "../../helpers/toastManager"
+import {FAIL_TOAST} from "../../constant/toastTypes"
+import toastConstant from "../../constant/toastConstant"
 
 function Reservation1Page({prices})
 {
@@ -20,25 +23,22 @@ function Reservation1Page({prices})
     const [isBuy, setIsBuy] = useState(true)
     const {productTypes} = GetReserveTypes()
     const resetDate = useRef(null)
-    const {data} = GetReserveDate({IsBuy: isBuy, ProductId: values.productId, Quantity: values.quantity})
-    const dateItems = []
-    if (data?.list?.length)
-    {
-        for (let i = 0; i < data.list.length; i++)
-        {
-            const item = data.list[i]
-            for (let j = 0; j < item.times.length; j++)
-            {
-                const innerItem = item.times[j]
-                dateItems.push({name: item.dateString + " " + innerItem.timeString, id: innerItem.dateTimeId})
-            }
-        }
-    }
+    const resetDateTime = useRef(null)
+    const {days, hours} = GetReserveDate({IsBuy: isBuy, ProductId: values.productId, Quantity: values.quantity, selectedDay: values.date})
 
     function changeField({name, value, reset})
     {
-        if (name === "dateTimeId" && reset) resetDate.current = reset
-        if (name !== "dateTimeId" && resetDate.current) resetDate.current()
+        if (name === "date" && reset) resetDate.current = reset
+        if (name === "dateTimeId" && reset) resetDateTime.current = reset
+        if (name === "productId" || name === "quantity")
+        {
+            if (resetDate.current) resetDate.current()
+            if (resetDateTime.current) resetDateTime.current()
+        }
+        if (name === "date")
+        {
+            if (resetDateTime.current) resetDateTime.current()
+        }
         setValues(values => ({...values, [name]: value}))
     }
 
@@ -48,12 +48,19 @@ function Reservation1Page({prices})
         {
             setIsBuy(state)
             if (resetDate.current) resetDate.current()
+            if (resetDateTime.current) resetDateTime.current()
         }
     }
 
     function submit()
     {
+        // window.history.replaceState("", "", urlConstant.reserve1 + createQueryString({params: {...values, isBuy}}))
         window.history.pushState("", "", urlConstant.reserve2 + createQueryString({params: {...values, isBuy}}))
+    }
+
+    function onDisableClick()
+    {
+        toastManager.addToast({type: FAIL_TOAST, message: toastConstant.selectFieldsFirst})
     }
 
     return (
@@ -80,12 +87,21 @@ function Reservation1Page({prices})
                                ltr
                                className="reserve-select-type-quantity"
                         />
-                        <Select name="dateTimeId"
-                                placeholder="تاریخ و ساعت"
-                                full_title="تاریخ و ساعت را انتخاب کنید"
-                                items={dateItems}
+                        <Select name="date"
+                                placeholder="تاریخ"
+                                full_title="تاریخ را انتخاب کنید"
+                                items={days}
                                 onChange={changeField}
                                 disabled={disableDate}
+                                onDisableClick={onDisableClick}
+                        />
+                        <Select name="dateTimeId"
+                                placeholder="ساعت"
+                                full_title="ساعت را انتخاب کنید"
+                                items={hours}
+                                onChange={changeField}
+                                disabled={disableDate}
+                                onDisableClick={onDisableClick}
                         />
                         <Button className="reserve-btn" disable={disable} onClick={submit}>
                             مرحله بعد
