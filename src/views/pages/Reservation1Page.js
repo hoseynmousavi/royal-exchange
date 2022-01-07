@@ -20,6 +20,7 @@ function Reservation1Page({prices})
     const [values, setValues] = useState({})
     const disable = !(values.productId && values.quantity && values.dateTimeId)
     const disableDate = !(values.productId && values.quantity)
+    const disableDateTime = !(values.productId && values.quantity && values.date)
     const [isBuy, setIsBuy] = useState(true)
     const {productTypes} = GetReserveTypes()
     const resetDate = useRef(null)
@@ -54,13 +55,17 @@ function Reservation1Page({prices})
 
     function submit()
     {
-        // window.history.replaceState("", "", urlConstant.reserve1 + createQueryString({params: {...values, isBuy}}))
         window.history.pushState("", "", urlConstant.reserve2 + createQueryString({params: {...values, isBuy}}))
     }
 
     function onDisableClick()
     {
         toastManager.addToast({type: FAIL_TOAST, message: toastConstant.selectFieldsFirst})
+    }
+
+    function onDisableTimeClick()
+    {
+        toastManager.addToast({type: FAIL_TOAST, message: toastConstant.selectFieldsFirstTime})
     }
 
     return (
@@ -100,8 +105,8 @@ function Reservation1Page({prices})
                                 full_title="ساعت را انتخاب کنید"
                                 items={hours}
                                 onChange={changeField}
-                                disabled={disableDate}
-                                onDisableClick={onDisableClick}
+                                disabled={disableDateTime}
+                                onDisableClick={onDisableTimeClick}
                         />
                         <Button className="reserve-btn" disable={disable} onClick={submit}>
                             مرحله بعد
