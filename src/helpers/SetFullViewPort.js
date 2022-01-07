@@ -5,17 +5,18 @@ function SetFullViewPort()
 {
     const {clientWidth, clientHeight} = Resize()
     const timer = useRef(null)
+    const viewport = +process.env.REACT_APP_DESKTOP_VIEWPORT.replace("px", "")
 
     clearTimeout(timer.current)
     timer.current = setTimeout(() =>
     {
         document.documentElement.style.setProperty(
             "--full-viewport",
-            clientWidth > 450 ? "450px" : "100vw",
+            clientWidth > viewport ? viewport + "px" : "100vw",
         )
         document.documentElement.style.setProperty(
             "--mobile-first-solid-padding",
-            clientWidth > 450 ? "22.5px" : "5vw",
+            clientWidth > viewport ? viewport * 0.05 + "px" : "5vw",
         )
         document.documentElement.style.setProperty(
             "--full-height",
