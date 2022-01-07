@@ -26,6 +26,7 @@
   font-size: var(--title-font);
   white-space: nowrap;
   text-align: center;
+  animation: fade-in ease 0.2s;
 
   &.second-theme {
     background-color: var(--third-text-color);
