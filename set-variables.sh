@@ -12,9 +12,9 @@ sed -i "s~KEYWORDS~$REACT_APP_KEYWORDS~g" build/index.html
 sed -i "s~PRECONNECT~$REACT_APP_REST_URL~g" build/index.html
 sed -i "s~DESKTOP_VIEWPORT~$REACT_APP_DESKTOP_VIEWPORT~g" build/index.html
 sed -i "s~FULL_VIEWPORT~$REACT_APP_FULL_VIEWPORT~g" build/index.html
-sed -i "s~FULL_HEIGHT~$REACT_APP_FULL_HEIGHT~g" build/index.html
 sed -i "s~HEADER_CONTENT_HEIGHT~$REACT_APP_HEADER_CONTENT_HEIGHT~g" build/index.html
 sed -i "s~HEADER_FULL_HEIGHT~$REACT_APP_HEADER_FULL_HEIGHT~g" build/index.html
+sed -i "s~FULL_HEIGHT~$REACT_APP_FULL_HEIGHT~g" build/index.html
 sed -i "s~NAV_HEIGHT~$REACT_APP_NAV_HEIGHT~g" build/index.html
 sed -i "s~BTN_INPUT_HEIGHT~$REACT_APP_BTN_INPUT_HEIGHT~g" build/index.html
 sed -i "s~MOBILE_FIRST_GRID_PADDING~$REACT_APP_MOBILE_FIRST_GRID_PADDING~g" build/index.html
