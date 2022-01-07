@@ -26,26 +26,26 @@ const getPrices = ({dispatch}) =>
         })
 }
 
-const pinPrice = ({productId, dispatch}) =>
+const pinPrice = ({productId, selectedTab, dispatch}) =>
 {
     request.get({url: apiUrlsConstant.pinPrice, param: `?productId=${productId}`, dontCache: true})
         .then(() =>
         {
             dispatch({
                 type: PIN_PRICE,
-                payload: {productId},
+                payload: {productId, selectedTab},
             })
         })
 }
 
-const unPinPrice = ({productId, dispatch}) =>
+const unPinPrice = ({productId, selectedTab, dispatch}) =>
 {
     request.get({url: apiUrlsConstant.unPinPrice, param: `?productId=${productId}`, dontCache: true})
         .then(() =>
         {
             dispatch({
                 type: UNPIN_PRICE,
-                payload: {productId},
+                payload: {productId, selectedTab},
             })
         })
 }

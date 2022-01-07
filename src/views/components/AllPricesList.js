@@ -27,11 +27,11 @@ function AllPricesList({currencies, golds})
         {
             if (item.isPin)
             {
-                MainActions.unPinPrice({productId: item.productId, dispatch})
+                MainActions.unPinPrice({productId: item.productId, selectedTab, dispatch})
             }
             else
             {
-                MainActions.pinPrice({productId: item.productId, dispatch})
+                MainActions.pinPrice({productId: item.productId, selectedTab, dispatch})
             }
         }
     }

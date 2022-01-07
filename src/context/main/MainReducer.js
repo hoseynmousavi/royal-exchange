@@ -46,32 +46,30 @@ function reducer(state, action)
         }
         case PIN_PRICE:
         {
-            const {productId} = action.payload
-            const currencies = [...state.prices.currencies]
-            const pinnedItem = currencies[currencies.findIndex(item => item.productId === productId)]
+            const {productId, selectedTab} = action.payload
+            const data = [...state.prices[selectedTab === "currency" ? "currencies" : "golds"]]
+            const pinnedItem = data[data.findIndex(item => item.productId === productId)]
             pinnedItem.isPin = true
             const pins = [...state.prices.pins, pinnedItem]
             return {
                 ...state,
                 prices: {
                     ...state.prices,
-                    currencies,
                     pins,
                 },
             }
         }
         case UNPIN_PRICE:
         {
-            const {productId} = action.payload
-            const currencies = [...state.prices.currencies]
-            const pinnedItem = currencies[currencies.findIndex(item => item.productId === productId)]
+            const {productId, selectedTab} = action.payload
+            const data = [...state.prices[selectedTab === "currency" ? "currencies" : "golds"]]
+            const pinnedItem = data[data.findIndex(item => item.productId === productId)]
             pinnedItem.isPin = false
             const pins = [...state.prices.pins].filter(item => item.productId !== pinnedItem.productId)
             return {
                 ...state,
                 prices: {
                     ...state.prices,
-                    currencies,
                     pins,
                 },
             }
