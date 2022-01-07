@@ -6,7 +6,7 @@ import HomeFooter from "../components/HomeFooter"
 
 function HomePage({prices, isLoading})
 {
-    const {pins, timeBox, currencies} = prices
+    const {pins, timeBox, currencies, golds} = prices
     const {lastUpdateDateString, lastUpdateTimeString} = timeBox || {}
     return (
         <>
@@ -18,7 +18,7 @@ function HomePage({prices, isLoading})
                         :
                         <div className="home-main-content">
                             <PinPricesList pins={pins}/>
-                            <AllPricesList currencies={currencies}/>
+                            <AllPricesList currencies={currencies} golds={golds}/>
                         </div>
                 }
             </main>
