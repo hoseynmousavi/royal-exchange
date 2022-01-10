@@ -75,8 +75,8 @@ function Reservation2Page({prices})
                 <div className="home-main-content">
                     <div className="reserve">
                         <Input autoComplete="off" name="fullName" label="نام و نام خانوادگی" defaultValue={defaultName} placeholder="نام و نام خانوادگی خود را وارد کنید" onChange={onChange}/>
-                        <Input autoComplete="off" name="natioanalCode" label="کد ملی" placeholder="کد ملی خود را وارد کنید" ltr onChange={onChange} validation="national_code"/>
-                        <Input autoComplete="off" name="mobilePhone" label="شماره موبایل" defaultValue={defaultPhone} ltr onChange={onChange} validation="phone"/>
+                        <Input autoComplete="off" name="natioanalCode" type="tel" label="کد ملی" placeholder="کد ملی خود را وارد کنید" ltr onChange={onChange} validation="national_code"/>
+                        <Input autoComplete="off" name="mobilePhone" type="tel" label="شماره موبایل" defaultValue={defaultPhone} ltr onChange={onChange} validation="phone"/>
                         <p className="input-label-text">تصویر کارت ملی</p>
                         <label>
                             <Material isDiv className="reserve-photo" backgroundColor="rgba(0,0,0,0.1)">
