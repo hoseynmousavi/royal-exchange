@@ -55,7 +55,9 @@ function Reservation1Page({prices})
 
     function submit()
     {
-        window.history.pushState("", "", urlConstant.reserve2 + createQueryString({params: {...values, isBuy}}))
+        const hour = hours.filter(item => item.id === values.dateTimeId)[0].name
+        const productName = productTypes.data.filter(item => item.id === values.productId)[0].name
+        window.history.pushState("", "", urlConstant.reserve2 + createQueryString({params: {...values, hour, productName, isBuy}}))
     }
 
     function onDisableClick()
@@ -86,7 +88,7 @@ function Reservation1Page({prices})
                         />
                         <Input name="quantity"
                                autoComplete="off"
-                               type="number"
+                               type="tel"
                                onChange={changeField}
                                placeholder="تعداد را مشخص کنید"
                                ltr

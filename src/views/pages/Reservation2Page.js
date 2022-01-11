@@ -9,28 +9,27 @@ import Button from "../components/Button"
 import Material from "../components/Material"
 import ImageShow from "../components/ImageShow"
 import MainActions from "../../context/main/MainActions"
-import toastManager from "../../helpers/toastManager"
-import {SUCCESS_TOAST} from "../../constant/toastTypes"
-import toastConstant from "../../constant/toastConstant"
 import compressImage from "../../helpers/compressImage"
 
 function Reservation2Page({prices})
 {
     const {timeBox} = prices
     const {lastUpdateDateString, lastUpdateTimeString} = timeBox || {}
+    const {dateTimeId, isBuy, productId, quantity, hour, date, productName} = parseQueryString()
     const {state: user} = useContext(AuthContext)
     const [imageBase64, setImageBase64] = useState(null)
     const {firstName, lastName, username} = user
     const defaultName = firstName && lastName ? firstName + " " + lastName : ""
     const defaultPhone = username ? username : ""
     const [values, setValues] = useState({fullName: defaultName, mobilePhone: defaultPhone})
+    const {fullName, mobilePhone, natioanalCode} = values
     const disable = !(values.fullName && values.mobilePhone && values.natioanalCode && imageBase64)
     const [isLoading, setIsLoading] = useState(false)
+    const [showModal, setShowModal] = useState(false)
 
     useEffect(() =>
     {
-        const values = parseQueryString()
-        if (!(values.dateTimeId && values.isBuy !== undefined && values.productId && values.quantity)) window.history.replaceState("", "", urlConstant.reserve1)
+        if (!(dateTimeId && isBuy !== undefined && productId && quantity)) window.history.replaceState("", "", urlConstant.reserve1)
     }, [])
 
     function onChange({name, value})
@@ -53,19 +52,31 @@ function Reservation2Page({prices})
     {
         setIsLoading(true)
         MainActions.setReserve({
-            fullName: values.fullName,
-            mobilePhone: values.mobilePhone,
-            natioanalCode: values.natioanalCode,
+            fullName,
+            mobilePhone,
+            natioanalCode,
             imageBase64,
-            ...parseQueryString(),
+            dateTimeId,
+            isBuy,
+            productId,
+            quantity,
         })
-            .then(() =>
+            .then(res =>
             {
                 setIsLoading(false)
-                toastManager.addToast({type: SUCCESS_TOAST, message: toastConstant.reserveSuccess})
-                window.history.replaceState("", "", urlConstant.home)
+                setShowModal(res.data.trackingCode)
             })
             .catch(() => setIsLoading(false))
+    }
+
+    function goOut()
+    {
+        window.history.replaceState("", "", urlConstant.home)
+    }
+
+    function anotherTime()
+    {
+        window.history.replaceState("", "", urlConstant.reserve1)
     }
 
     return (
@@ -96,6 +107,27 @@ function Reservation2Page({prices})
                 </div>
             </main>
             <HomeFooter selected="reserve"/>
+
+            {
+                !!showModal &&
+                <>
+                    <div className="vertical-panel-back modal show" onClick={goOut}/>
+                    <div className="reserve-modal">
+                        <div className="reserve-modal-name">{fullName}</div>
+                        <br/>
+                        <div className="reserve-modal-name">سفارش {isBuy ? "خرید" : "فروش"}</div>
+                        <div className="reserve-modal-type">{quantity} {productName}</div>
+                        <div className="reserve-modal-type">تاریخ حضور:</div>
+                        <div className="reserve-modal-type">{date}</div>
+                        <div className="reserve-modal-type">ساعت {hour}</div>
+                        <br/>
+                        <div className="reserve-modal-type">شماره پیگیری:</div>
+                        <div className="reserve-modal-name">{showModal}</div>
+                        <br/>
+                        <Button onClick={anotherTime}>نوبت جدید</Button>
+                    </div>
+                </>
+            }
         </>
     )
 }

@@ -9,8 +9,8 @@ function Route({location, path, render})
         function calcParams(location)
         {
             let tempParams = {}
-            const pathSections = path.match(/\/(:?)((\w|\.|-)+)/g)
-            const pathnameSections = location.match(/\/(:?)((\w|\.|-)+)/g)
+            const pathSections = path.match(/\/(:?)((\w|\.|-|\+)+)/g)
+            const pathnameSections = location.match(/\/(:?)((\w|\.|-|\+)+)/g)
             if (pathSections && pathnameSections)
             {
                 pathSections.forEach((item, index) =>

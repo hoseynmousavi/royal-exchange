@@ -20,6 +20,7 @@
   color: var(--first-text-color);
   font-size: var(--title-font);
   font-family: my-font-bold, serif;
+  cursor: pointer;
   transition: background-color ease 0.2s, color ease 0.2s;
 
   &.active {
@@ -70,4 +71,34 @@
   justify-content: center;
   font-size: 26px;
   padding-top: 4px;
+}
+
+.reserve-modal {
+  position: fixed;
+  right: 5%;
+  left: 5%;
+  width: 90%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: var(--modal-z-index);
+  background-color: var(--first-background-color);
+  background-image: url("../media/images/modal-back.png");
+  background-position: top right;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  padding: 32px;
+  border-radius: var(--second-radius);
+  box-shadow: var(--first-shadow);
+  text-align: center;
+}
+
+.reserve-modal-name {
+  font-family: my-font-bold, serif;
+  font-size: var(--large-font);
+  margin: 4px 0;
+}
+
+.reserve-modal-type {
+  font-size: var(--large-font);
+  margin: 4px 0;
 }

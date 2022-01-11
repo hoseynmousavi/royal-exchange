@@ -4,6 +4,8 @@
 }
 
 .about-page-desc {
+  white-space: pre-wrap;
+  text-align: center;
   background-color: var(--first-background-color);
   border-radius: var(--first-radius);
   border: 1px solid var(--first-text-color);

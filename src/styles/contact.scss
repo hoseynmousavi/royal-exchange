@@ -17,6 +17,7 @@
   justify-content: space-between;
   width: calc(100% - 2 * var(--mobile-first-grid-padding));
   margin: 0 var(--mobile-first-grid-padding) 8px var(--mobile-first-grid-padding);
+  line-height: var(--first-line-height);
 }
 
 .contact-item-btn-right {

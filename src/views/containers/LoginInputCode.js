@@ -1,6 +1,5 @@
 import {useContext, useEffect, useRef, useState} from "react"
 import CodeInput from "../components/CodeInput"
-import regexConstant from "../../constant/regexConstant"
 import Button from "../components/Button"
 import AuthActions from "../../context/auth/AuthActions"
 import {AuthContext} from "../../context/auth/AuthReducer"
@@ -20,7 +19,7 @@ function LoginInputCode({route: {match: {params: {phone}}}})
 
     useEffect(() =>
     {
-        if (!regexConstant.PHONE_REGEX.test(phone || "")) window.history.replaceState("", "", "/")
+        if (!phone) window.history.replaceState("", "", urlConstant.login)
         else AuthActions.sendOtp({username: phone, cancel: cancelSource => request.current = cancelSource})
 
         return () => request?.current?.cancel && request.current.cancel(toastConstant.requestCancel)

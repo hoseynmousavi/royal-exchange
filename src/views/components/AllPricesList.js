@@ -53,7 +53,7 @@ function AllPricesList({currencies, golds})
                             <div className="all-prices-table-title-item less title"/>
                         </div>
                         {
-                            showData.map(item =>
+                            showData.sort((a, b) => a.productId - b.productId).map(item =>
                                 <div key={item.productId} className="all-prices-table-title row">
                                     <div className="all-prices-table-title-item bigger normal-weight">
                                         <ImageShow className="all-prices-table-title-item-img" src={item.imageLink} alt={item.name}/>
