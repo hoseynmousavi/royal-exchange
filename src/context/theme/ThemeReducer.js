@@ -1,6 +1,5 @@
 import {createContext, useEffect, useReducer} from "react"
 import {TOGGLE_THEME} from "./ThemeTypes"
-import ThemeActions from "./ThemeActions"
 import loadColors from "../../helpers/loadColors"
 import themeManager from "../../helpers/themeManager"
 import SetFullViewPort from "../../helpers/SetFullViewPort"
@@ -42,8 +41,6 @@ function ThemeProvider({children})
     {
         if (process.env.NODE_ENV === "development") loadColors()
         themeManager.configTheme()
-        const theme = localStorage.getItem("theme")
-        if (theme === "dark" || (!theme && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)) ThemeActions.changeTheme({theme: "dark", dispatch})
     }, [])
 
     return (

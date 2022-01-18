@@ -19,7 +19,7 @@ const changeBarColor = ({barColor}) =>
 
 const resetBarColor = () =>
 {
-    window.changeBarColor({barColor: getComputedStyleHelper("--first-background-color")})
+    window.changeBarColor({barColor: getComputedStyleHelper("--first-color")})
 }
 
 const themeManager = {

@@ -5,7 +5,7 @@ import {ThemeContext} from "../../context/theme/ThemeReducer"
 function ThemeColorBar()
 {
     const {state: {theme}} = useContext(ThemeContext)
-    const [barColor, setBarColor] = useState(getComputedStyleHelper("--first-background-color"))
+    const [barColor, setBarColor] = useState(getComputedStyleHelper("--first-color"))
 
     useEffect(() =>
     {
