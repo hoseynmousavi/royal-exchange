@@ -41,7 +41,7 @@ function ProfilePage({prices})
     return (
         <>
             <HomeHeader back="صفحه اصلی" title="پروفایل" lastUpdateDateString={lastUpdateDateString} lastUpdateTimeString={lastUpdateTimeString}/>
-            <main className="home-main">
+            <main className="home-main no-footer">
                 <div className="home-main-content">
                     <div className="profile">
                         <Input name="firstName" label="نام" defaultValue={firstName} placeholder="نام خود را وارد کنید" onChange={onChange}/>

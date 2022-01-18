@@ -10,7 +10,7 @@ function AboutPage({prices})
     return (
         <>
             <HomeHeader back="ارتباط با ما" title="تماس با ما" lastUpdateDateString={lastUpdateDateString} lastUpdateTimeString={lastUpdateTimeString}/>
-            <main className="home-main">
+            <main className="home-main no-footer">
                 {
                     isLoading ?
                         <MyLoader width={40}/>
