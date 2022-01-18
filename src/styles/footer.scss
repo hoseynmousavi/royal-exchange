@@ -3,11 +3,12 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: var(--nav-height);
+  height: calc(var(--nav-height) + min(env(safe-area-inset-bottom), 12px));
+  padding-bottom: calc(min(env(safe-area-inset-bottom), 12px));
+  z-index: var(--header-z-index);
   background-color: var(--first-color);
   border-radius: var(--third-radius) var(--third-radius) 0 0;
   display: flex;
-  overflow: hidden;
 }
 
 .footer-item {

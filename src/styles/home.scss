@@ -1,6 +1,6 @@
 .home-main {
   padding-top: var(--header-full-height);
-  padding-bottom: var(--nav-height);
+  padding-bottom: calc(var(--nav-height) + min(env(safe-area-inset-bottom), 12px));
   min-height: var(--full-height);
   background-color: var(--second-background-color);
   display: flex;
