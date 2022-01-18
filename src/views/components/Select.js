@@ -7,7 +7,7 @@ import RadioItem from "./RadioItem"
 
 const VerticalPanel = lazy(() => import("./VerticalPanel"))
 
-function Select({name, full_title, placeholder, title, items, defaultValue, onChange, disabled, onDisableClick})
+function Select({name, full_title, placeholder, title, items, defaultValue, onChange, disabled, onDisableClick, notFound})
 {
     const [isShowPanel, setIsShowPanel] = useState(false)
     const [value, setValue] = useState(null)
@@ -63,9 +63,12 @@ function Select({name, full_title, placeholder, title, items, defaultValue, onCh
                         <div className="select-title">{full_title || title}</div>
                         <div className="select-items-cont">
                             {
-                                items.map(item =>
-                                    <RadioItem key={item.name} onClick={onItemSelect(item)} name={item.name} isActive={value?.id === item.id}/>,
-                                )
+                                items?.length > 0 ?
+                                    items.map(item =>
+                                        <RadioItem key={item.name} onClick={onItemSelect(item)} name={item.name} isActive={value?.id === item.id}/>,
+                                    )
+                                    :
+                                    notFound || null
                             }
                         </div>
                     </VerticalPanel>

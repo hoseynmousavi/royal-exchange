@@ -44,10 +44,10 @@ function ProfilePage({prices})
             <main className="home-main no-footer">
                 <div className="home-main-content">
                     <div className="profile">
-                        <Input name="firstName" label="نام" defaultValue={firstName} placeholder="نام خود را وارد کنید" onChange={onChange}/>
-                        <Input name="lastName" label="نام خانوادگی" defaultValue={lastName} placeholder="نام خانوادگی خود را وارد کنید" onChange={onChange}/>
+                        <Input name="firstName" label="نام" defaultValue={firstName} disabled={isLoading} placeholder="نام خود را وارد کنید" onChange={onChange}/>
+                        <Input name="lastName" label="نام خانوادگی" defaultValue={lastName} disabled={isLoading} placeholder="نام خانوادگی خود را وارد کنید" onChange={onChange}/>
                         <Input name="phone" label="شماره موبایل" defaultValue={username} disabled ltr onChange={onChange}/>
-                        <Input name="email" label="ایمیل" defaultValue={email} ltr placeholder="ایمیل خود را وارد کنید" validation="email" onChange={onChange}/>
+                        <Input name="email" label="ایمیل" defaultValue={email} ltr disabled={isLoading} placeholder="ایمیل خود را وارد کنید" validation="email" onChange={onChange}/>
                         <br/>
                         <Button loading={isLoading} disable={disable} onClick={submit}>
                             بروزرسانی

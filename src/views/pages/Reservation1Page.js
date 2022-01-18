@@ -85,6 +85,7 @@ function Reservation1Page({prices})
                                 full_title="نوع ارز را انتخاب کنید"
                                 items={productTypes.data}
                                 onChange={changeField}
+                                notFound="ارزی یافت نشد"
                         />
                         <Input name="quantity"
                                autoComplete="off"
@@ -101,6 +102,7 @@ function Reservation1Page({prices})
                                 onChange={changeField}
                                 disabled={disableDate}
                                 onDisableClick={onDisableClick}
+                                notFound="تاریخی یافت نشد"
                         />
                         <Select name="dateTimeId"
                                 placeholder="ساعت"
@@ -109,6 +111,7 @@ function Reservation1Page({prices})
                                 onChange={changeField}
                                 disabled={disableDateTime}
                                 onDisableClick={onDisableTimeClick}
+                                notFound="ساعتی یافت نشد"
                         />
                         <Button className="reserve-btn" disable={disable} onClick={submit}>
                             مرحله بعد
