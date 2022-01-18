@@ -28,7 +28,7 @@ const getPrices = ({dispatch}) =>
 
 const pinPrice = ({productId, selectedTab, dispatch}) =>
 {
-    request.get({url: apiUrlsConstant.pinPrice, param: `?productId=${productId}`, dontCache: true})
+    return request.get({url: apiUrlsConstant.pinPrice, param: `?productId=${productId}`, dontCache: true})
         .then(() =>
         {
             dispatch({
@@ -40,7 +40,7 @@ const pinPrice = ({productId, selectedTab, dispatch}) =>
 
 const unPinPrice = ({productId, selectedTab, dispatch}) =>
 {
-    request.get({url: apiUrlsConstant.unPinPrice, param: `?productId=${productId}`, dontCache: true})
+    return request.get({url: apiUrlsConstant.unPinPrice, param: `?productId=${productId}`, dontCache: true})
         .then(() =>
         {
             dispatch({

@@ -1,15 +1,9 @@
-import ImageShow from "./ImageShow"
 import Material from "./Material"
-import MainActions from "../../context/main/MainActions"
-import {useContext, useState} from "react"
-import {MainContext} from "../../context/main/MainReducer"
-import showPrice from "../../helpers/showPrice"
-import UnPinSvg from "../../media/svg/UnPinSvg"
-import PinSvg from "../../media/svg/PinSvg"
+import {useState} from "react"
+import PriceItem from "./PriceItem"
 
 function AllPricesList({currencies, golds})
 {
-    const {dispatch} = useContext(MainContext)
     const [selectedTab, setSelectedTab] = useState("currency")
     const showData = (selectedTab === "gold" ? golds : currencies)
 
@@ -18,21 +12,6 @@ function AllPricesList({currencies, golds})
         return function ()
         {
             setSelectedTab(item)
-        }
-    }
-
-    function togglePin(item)
-    {
-        return function ()
-        {
-            if (item.isPin)
-            {
-                MainActions.unPinPrice({productId: item.productId, selectedTab, dispatch})
-            }
-            else
-            {
-                MainActions.pinPrice({productId: item.productId, selectedTab, dispatch})
-            }
         }
     }
 
@@ -54,18 +33,7 @@ function AllPricesList({currencies, golds})
                         </div>
                         {
                             showData.sort((a, b) => a.productId - b.productId).map(item =>
-                                <div key={item.productId} className="all-prices-table-title row">
-                                    <div className="all-prices-table-title-item bigger normal-weight">
-                                        <ImageShow className="all-prices-table-title-item-img" src={item.imageLink} alt={item.name}/>
-                                        <div>{item.name}</div>
-                                    </div>
-                                    <div className="all-prices-table-title-item">{showPrice(item.buyPrice)}</div>
-                                    <div className="all-prices-table-title-item">{showPrice(item.sellPrice)}</div>
-                                    {selectedTab === "currency" && <div className="all-prices-table-title-item">{showPrice(item.remittancePrice)}</div>}
-                                    <Material className="all-prices-table-title-item less" onClick={togglePin(item)}>
-                                        {item.isPin ? <PinSvg className="all-prices-table-title-pin"/> : <UnPinSvg className="all-prices-table-title-pin"/>}
-                                    </Material>
-                                </div>,
+                                <PriceItem key={item.productId} item={item} selectedTab={selectedTab}/>,
                             )
                         }
                     </>
