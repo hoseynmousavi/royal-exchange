@@ -96,11 +96,11 @@ function Switch({children, desktopAnime})
     {
         if (contRef.animate)
         {
-            contRef.animate([{opacity: 1}, {opacity: 0}, {opacity: 0}], {duration: 350, easing: "ease-in"})
+            contRef.animate([{opacity: 1}, {opacity: 0}, {opacity: 0}], {duration: 500, easing: "ease-in"})
             setTimeout(() =>
             {
                 setState({showChildIndex: showChildIndexTemp, location: locationTemp})
-                contRef.animate([{opacity: 0}, {opacity: 1}], {duration: 175, easing: "ease-out"})
+                contRef.animate([{opacity: 0}, {opacity: 1}], {duration: 250, easing: "ease-out"})
                 setTimeout(() => root.scrollTo({top: scroll}), 0)
             }, 195)
         }
