@@ -20,12 +20,14 @@ sed -i "s~BTN_INPUT_HEIGHT~$REACT_APP_BTN_INPUT_HEIGHT~g" build/index.html
 sed -i "s~MOBILE_FIRST_GRID_PADDING~$REACT_APP_MOBILE_FIRST_GRID_PADDING~g" build/index.html
 sed -i "s~MOBILE_FIRST_SOLID_PADDING~$REACT_APP_MOBILE_FIRST_SOLID_PADDING~g" build/index.html
 sed -i "s~FIRST_LINE_HEIGHT~$REACT_APP_FIRST_LINE_HEIGHT~g" build/index.html
-sed -i "s~HEADER_Z_INDEX~$REACT_APP_HEADER_Z_INDEX~g" build/index.html
+sed -i "s~TOAST_Z_INDEX~$REACT_APP_TOAST_Z_INDEX~g" build/index.html
 sed -i "s~MODAL_Z_INDEX~$REACT_APP_MODAL_Z_INDEX~g" build/index.html
+sed -i "s~HEADER_Z_INDEX~$REACT_APP_HEADER_Z_INDEX~g" build/index.html
 sed -i "s~DEFAULT_Z_INDEX~$REACT_APP_DEFAULT_Z_INDEX~g" build/index.html
 sed -i "s~TOAST_SUCCESS_BG~$REACT_APP_TOAST_SUCCESS_BG~g" build/index.html
 sed -i "s~TOAST_SUCCESS_TEXT~$REACT_APP_TOAST_SUCCESS_TEXT~g" build/index.html
 sed -i "s~TOAST_INFO_BG~$REACT_APP_TOAST_INFO_BG~g" build/index.html
+sed -i "s~TOAST_INFO_TEXT~$REACT_APP_TOAST_INFO_TEXT~g" build/index.html
 sed -i "s~TOAST_FAIL_BG~$REACT_APP_TOAST_FAIL_BG~g" build/index.html
 sed -i "s~TOAST_FAIL_TEXT~$REACT_APP_TOAST_FAIL_TEXT~g" build/index.html
 sed -i "s~FIRST_COLOR~$REACT_APP_FIRST_COLOR~g" build/index.html

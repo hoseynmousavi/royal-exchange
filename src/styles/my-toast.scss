@@ -1,12 +1,12 @@
 .toast-container {
   position: fixed;
-  top: calc(var(--header-full-height) + 15px);
+  top: 15px;
   left: 15px;
-  max-height: calc(var(--full-height) - 30px - var(--header-full-height));
+  max-height: calc(var(--full-height) - 30px);
   overflow: hidden;
   width: calc(100% - 30px);
   right: 15px;
-  z-index: var(--modal-z-index);
+  z-index: var(--toast-z-index);
   pointer-events: none;
 }
 
@@ -19,6 +19,7 @@
   font-family: my-font-bold, serif;
   font-size: var(--title-font);
   width: 100%;
+  overflow: hidden;
   user-select: none;
   pointer-events: all;
 
@@ -33,10 +34,10 @@
 
   &.INFO_TOAST {
     background-color: var(--toast-info-bg);
-    color: var(--link-color);
+    color: var(--toast-info-text);
 
     .toast-item-close {
-      fill: var(--link-color);
+      fill: var(--toast-info-text);
     }
   }
 
@@ -60,7 +61,7 @@
     }
 
     &.INFO_TOAST {
-      background-color: var(--link-color);
+      background-color: var(--toast-info-text);
       color: var(--solid-light);
 
       .toast-item-close {
@@ -85,10 +86,30 @@
 }
 
 .toast-item-svg {
+  margin-right: -2px;
+  min-width: 20px;
   width: 20px;
   height: 20px;
   border-radius: 50%;
   margin-left: 8px;
+
+  &.success {
+    path {
+      stroke: var(--toast-success-text)
+    }
+  }
+
+  &.info {
+    path, circle {
+      stroke: var(--toast-info-text)
+    }
+  }
+
+  &.fail {
+    path {
+      stroke: var(--toast-fail-text)
+    }
+  }
 
   &.dark {
     &.success {
@@ -112,18 +133,20 @@
 }
 
 .toast-item-close-material {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-left: -10px;
+  margin-left: -4px;
   cursor: pointer;
 }
 
 .toast-item-close {
-  width: 25px;
-  height: 25px;
+  min-width: 120%;
+  width: 120%;
+  height: 120%;
   transform: rotate(45deg);
 }
