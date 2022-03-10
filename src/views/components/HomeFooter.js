@@ -13,9 +13,9 @@ function HomeFooter({selected})
     {
         return function ()
         {
-            if (type === "reserve") window.history.replaceState("", "", urlConstant.reserve1)
-            else if (type === "home") window.history.replaceState("", "", urlConstant.home)
-            else if (type === "contact") window.history.replaceState("", "", urlConstant.contactUs)
+            if (type === "reserve") window.history.pushState("", "", urlConstant.reserve1)
+            else if (type === "home") window.history.pushState("", "", urlConstant.home)
+            else if (type === "contact") window.history.pushState("", "", urlConstant.contactUs)
         }
     }
 
