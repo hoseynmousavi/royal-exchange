@@ -1,20 +1,17 @@
 import toastManager from "../helpers/toastManager"
 import errorConstant from "../constant/errorConstant"
 import {FAIL_TOAST} from "../constant/toastTypes"
-import refreshToken from "./refreshToken"
 import toastConstant from "../constant/toastConstant"
+import logoutManager from "../helpers/logoutManager"
 
 function requestErrorHandler({useRefreshToken, dontToast, err, callback})
 {
     console.log(" %cERROR ", "color: orange; font-size:12px; font-family: 'Helvetica',consolas,sans-serif; font-weight:900;", err.response)
-    if (!useRefreshToken && err?.response?.status === 403 && err?.response?.data?.detail === "Forbidden")
+    if (!useRefreshToken && err?.response?.status === 401)
     {
-        return refreshToken()
-            .then(callback)
-            .catch(err =>
-            {
-                throw err
-            })
+        setTimeout(() => toastManager.addToast({message: toastConstant.tokenExpired, type: FAIL_TOAST}), 200)
+        logoutManager.logout()
+        throw err
     }
     else
     {
