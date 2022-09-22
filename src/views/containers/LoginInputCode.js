@@ -7,9 +7,12 @@ import toastConstant from "../../constant/toastConstant"
 import textConstant from "../../constant/textConstant"
 import LoginHeader from "../components/LoginHeader"
 import urlConstant from "../../constant/urlConstant"
+import parseQueryString from "../../helpers/parseQueryString"
+import {MainContext} from "../../context/main/MainReducer"
 
 function LoginInputCode({route: {match: {params: {phone}}}})
 {
+    const {dispatch: mainDispatch} = useContext(MainContext)
     const {dispatch} = useContext(AuthContext)
     const [showError, setShowError] = useState(false)
     const [verifyLoading, setVerifyLoading] = useState(false)
@@ -32,8 +35,12 @@ function LoginInputCode({route: {match: {params: {phone}}}})
         if (code)
         {
             setVerifyLoading(true)
-            AuthActions.loginOrSignup({username: phone, code, dispatch})
-                .then(() => window.history.replaceState("", "", urlConstant.home))
+            AuthActions.loginOrSignup({username: phone, code, dispatch, mainDispatch})
+                .then(() =>
+                {
+                    const {returnTo} = parseQueryString()
+                    window.history.replaceState("", "", returnTo ? returnTo : urlConstant.home)
+                })
                 .catch(() =>
                 {
                     setVerifyLoading(false)

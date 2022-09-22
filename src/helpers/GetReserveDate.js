@@ -39,7 +39,7 @@ function GetReserveTypes({IsBuy, ProductId, Quantity, selectedDay})
                 })
             setHours(data)
         }
-
+        // eslint-disable-next-line
     }, [selectedDay])
 
     return {days, hours}

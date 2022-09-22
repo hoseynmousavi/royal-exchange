@@ -10,6 +10,7 @@ function GetContact()
     useEffect(() =>
     {
         if (isLoading) MainActions.getContact({dispatch})
+        // eslint-disable-next-line
     }, [])
 
     return {contact, isLoading}

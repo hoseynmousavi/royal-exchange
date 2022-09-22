@@ -6,6 +6,7 @@ import Button from "../components/Button"
 import textConstant from "../../constant/textConstant"
 import RadioItem from "../components/RadioItem"
 import LoginHeader from "../components/LoginHeader"
+import parseQueryString from "../../helpers/parseQueryString"
 
 function LoginInputPhone()
 {
@@ -22,7 +23,11 @@ function LoginInputPhone()
 
     function goToCode()
     {
-        if (!disable) window.history.pushState("", "", urlConstant.loginVerifyCode(phone))
+        if (!disable)
+        {
+            const {returnTo} = parseQueryString()
+            window.history.pushState("", "", `${urlConstant.loginVerifyCode(phone)}${returnTo ? `?returnTo=${returnTo}` : ""}`)
+        }
     }
 
     function toggleRules()

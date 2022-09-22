@@ -10,6 +10,7 @@ function GetPrices()
     useEffect(() =>
     {
         if (isLoading) MainActions.getPrices({dispatch})
+        // eslint-disable-next-line
     }, [])
 
     return {prices, isLoading}

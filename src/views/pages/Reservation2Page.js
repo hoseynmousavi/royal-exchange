@@ -6,10 +6,7 @@ import urlConstant from "../../constant/urlConstant"
 import Input from "../components/Input"
 import {AuthContext} from "../../context/auth/AuthReducer"
 import Button from "../components/Button"
-import Material from "../components/Material"
-import ImageShow from "../components/ImageShow"
 import MainActions from "../../context/main/MainActions"
-import compressImage from "../../helpers/compressImage"
 
 function Reservation2Page({prices})
 {
@@ -17,35 +14,24 @@ function Reservation2Page({prices})
     const {lastUpdateDateString, lastUpdateTimeString} = timeBox || {}
     const {dateTimeId, isBuy, productId, quantity, hour, date, productName} = parseQueryString()
     const {state: user} = useContext(AuthContext)
-    const [imageBase64, setImageBase64] = useState(null)
     const {firstName, lastName, username} = user
     const defaultName = firstName && lastName ? firstName + " " + lastName : ""
     const defaultPhone = username ? username : ""
     const [values, setValues] = useState({fullName: defaultName, mobilePhone: defaultPhone})
-    const {fullName, mobilePhone, natioanalCode} = values
-    const disable = !(values.fullName && values.mobilePhone && values.natioanalCode && imageBase64)
+    const {fullName, mobilePhone, natioanalCode, phone, postalCode, address} = values
+    const disable = !(fullName && mobilePhone && natioanalCode && phone && postalCode && address)
     const [isLoading, setIsLoading] = useState(false)
     const [showModal, setShowModal] = useState(false)
 
     useEffect(() =>
     {
         if (!(dateTimeId && isBuy !== undefined && productId && quantity)) window.history.replaceState("", "", urlConstant.reserve1)
+        // eslint-disable-next-line
     }, [])
 
     function onChange({name, value})
     {
         setValues(values => ({...values, [name]: value}))
-    }
-
-    function selectPhoto(e)
-    {
-        const file = e.target.files[0]
-        compressImage(file).then(img =>
-        {
-            const reader = new FileReader()
-            reader.readAsDataURL(img)
-            reader.onload = () => setImageBase64(reader.result)
-        })
     }
 
     function submit()
@@ -55,7 +41,9 @@ function Reservation2Page({prices})
             fullName,
             mobilePhone,
             natioanalCode,
-            imageBase64,
+            phone,
+            postalCode,
+            address,
             dateTimeId,
             isBuy,
             productId,
@@ -85,21 +73,12 @@ function Reservation2Page({prices})
             <main className="home-main">
                 <div className="home-main-content">
                     <div className="reserve">
-                        <Input autoComplete="off" name="fullName" label="نام و نام خانوادگی" defaultValue={defaultName} placeholder="نام و نام خانوادگی خود را وارد کنید" onChange={onChange}/>
-                        <Input autoComplete="off" name="natioanalCode" type="tel" label="کد ملی" placeholder="کد ملی خود را وارد کنید" ltr onChange={onChange} validation="national_code"/>
-                        <Input autoComplete="off" name="mobilePhone" type="tel" label="شماره موبایل" defaultValue={defaultPhone} ltr onChange={onChange} validation="phone"/>
-                        <p className="input-label-text">تصویر کارت ملی</p>
-                        <label>
-                            <Material isDiv className="reserve-photo" backgroundColor="rgba(0,0,0,0.1)">
-                                {
-                                    imageBase64 ?
-                                        <ImageShow className="reserve-photo-show" src={imageBase64}/>
-                                        :
-                                        <div className="reserve-photo-icon">+</div>
-                                }
-                            </Material>
-                            <input hidden type="file" accept="image/*" onChange={selectPhoto}/>
-                        </label>
+                        <Input required autoComplete="off" name="fullName" label="نام و نام خانوادگی" defaultValue={defaultName} placeholder="نام و نام خانوادگی خود را وارد کنید" onChange={onChange}/>
+                        <Input required autoComplete="off" name="natioanalCode" type="tel" label="کد ملی" placeholder="کد ملی خود را وارد کنید" ltr onChange={onChange} validation="national_code"/>
+                        <Input required autoComplete="off" name="mobilePhone" type="tel" label="شماره موبایل" placeholder="شماره موبایل خود را وارد کنید" defaultValue={defaultPhone} ltr onChange={onChange} validation="phone"/>
+                        <Input required autoComplete="off" name="phone" type="tel" label="تلفن ثابت" placeholder="تلفن ثابت خود را وارد کنید" ltr onChange={onChange} validation="home_phone"/>
+                        <Input required autoComplete="off" name="postalCode" type="tel" label="کد پستی" placeholder="کد پستی خود را وارد کنید" ltr onChange={onChange} validation="post"/>
+                        <Input required autoComplete="off" name="address" label="آدرس" placeholder="آدرس خود را وارد کنید" onChange={onChange}/>
                         <Button className="reserve-btn" loading={isLoading} disable={disable} onClick={submit}>
                             ثبت نوبت
                         </Button>

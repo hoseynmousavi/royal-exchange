@@ -45,7 +45,7 @@ function ContactPage({prices})
                                     <KeyboardArrowSvg className="contact-item-btn-arrow"/>
                                 </div>
                             </a>
-                            <a target="_blank" href={`https://www.google.com/maps/place/${contact.address.latitude},${contact.address.longitude}`} className="contact-item-btn">
+                            <a target="_blank" rel="noreferrer" href={`https://www.google.com/maps/place/${contact.address.latitude},${contact.address.longitude}`} className="contact-item-btn">
                                 <div className="contact-item-btn-right">
                                     <LocationSvg className="contact-item-btn-svg"/>
                                     <div className="contact-item-btn-text">آدرس حضوری</div>

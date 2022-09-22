@@ -8,27 +8,36 @@ import MainActions from "../../context/main/MainActions"
 import {useContext, useState} from "react"
 import {MainContext} from "../../context/main/MainReducer"
 import MyLoader from "./MyLoader"
+import {AuthContext} from "../../context/auth/AuthReducer"
+import toastManager from "../../helpers/toastManager"
+import {FAIL_TOAST} from "../../constant/toastTypes"
+import toastConstant from "../../constant/toastConstant"
 
 function PriceItem({item, selectedTab})
 {
+    const {state: user} = useContext(AuthContext)
     const {dispatch} = useContext(MainContext)
     const [isLoading, setIsLoading] = useState(false)
 
     function togglePin()
     {
-        setIsLoading(true)
-        if (item.isPin)
+        if (user)
         {
-            MainActions.unPinPrice({productId: item.productId, selectedTab, dispatch})
-                .then(() => setIsLoading(false))
-                .catch(() => setIsLoading(false))
+            setIsLoading(true)
+            if (item.isPin)
+            {
+                MainActions.unPinPrice({productId: item.productId, selectedTab, dispatch})
+                    .then(() => setIsLoading(false))
+                    .catch(() => setIsLoading(false))
+            }
+            else
+            {
+                MainActions.pinPrice({productId: item.productId, selectedTab, dispatch})
+                    .then(() => setIsLoading(false))
+                    .catch(() => setIsLoading(false))
+            }
         }
-        else
-        {
-            MainActions.pinPrice({productId: item.productId, selectedTab, dispatch})
-                .then(() => setIsLoading(false))
-                .catch(() => setIsLoading(false))
-        }
+        else toastManager.addToast({type: FAIL_TOAST, message: toastConstant.loginPlease})
     }
 
     return (

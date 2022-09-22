@@ -67,7 +67,7 @@ function Input({
             }
             else if (validation === "national_code")
             {
-                const value = numberCorrection(e.target.value.trim())
+                const value = numberCorrection(e.target.value.trim().slice(0, 10))
                 if (!isNaN(value) && value.length <= 10) setValue(value)
                 if (checkNationalCode(value)) onChange({name, value})
                 else onChange({name, value: value || required ? null : ""})
@@ -75,9 +75,25 @@ function Input({
             }
             else if (validation === "phone")
             {
-                const value = numberCorrection(e.target.value.trim())
+                const value = numberCorrection(e.target.value.trim().slice(0, 11))
                 if (!isNaN(value) && value.length <= 11) setValue(value)
                 if (regexConstant.PHONE_REGEX.test(value)) onChange({name, value})
+                else onChange({name, value: value || required ? null : ""})
+                checkErrTimer()
+            }
+            else if (validation === "home_phone")
+            {
+                const value = numberCorrection(e.target.value.trim().slice(0, 11))
+                if (!isNaN(value) && value.length <= 11) setValue(value)
+                if (regexConstant.HOME_PHONE_REGEX.test(value)) onChange({name, value})
+                else onChange({name, value: value || required ? null : ""})
+                checkErrTimer()
+            }
+            else if (validation === "post")
+            {
+                const value = numberCorrection(e.target.value.trim().slice(0, 10))
+                if (!isNaN(value) && value.length <= 10) setValue(value)
+                if (value.length === 10) onChange({name, value})
                 else onChange({name, value: value || required ? null : ""})
                 checkErrTimer()
             }
@@ -138,6 +154,10 @@ function Input({
                 {
                     if (!regexConstant.PHONE_REGEX.test(tempValue)) tempErr = toastConstant.unValidPhone
                 }
+                else if (validation === "home_phone")
+                {
+                    if (!regexConstant.HOME_PHONE_REGEX.test(tempValue)) tempErr = toastConstant.unValidPhoneHome
+                }
                 else if (validation === "url")
                 {
                     if (!regexConstant.URL_REGEX.test(tempValue)) tempErr = toastConstant.unValidUrl
@@ -145,6 +165,10 @@ function Input({
                 else if (validation === "password")
                 {
                     if (tempValue.length < 6) tempErr = toastConstant.unValidPassword
+                }
+                else if (validation === "post")
+                {
+                    if (tempValue.length < 10) tempErr = toastConstant.unValidPost
                 }
             }
         }

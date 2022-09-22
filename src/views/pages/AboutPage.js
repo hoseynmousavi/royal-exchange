@@ -20,7 +20,7 @@ function AboutPage({prices})
                             <div className="about-page-desc">
                                 {contact.aboutUs}
                             </div>
-                            <a className="about-page-link" href={contact.site} target="_blank">ورود به سایت</a>
+                            <a className="about-page-link" href={contact.site} target="_blank" rel="noreferrer">ورود به سایت</a>
                         </div>
                 }
             </main>

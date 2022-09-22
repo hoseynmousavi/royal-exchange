@@ -10,6 +10,7 @@ function GetReserveTypes()
     useEffect(() =>
     {
         if (isLoading) MainActions.getProductReserveTypes({dispatch})
+        // eslint-disable-next-line
     }, [])
 
     return {productTypes, isLoading}

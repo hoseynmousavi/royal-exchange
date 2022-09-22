@@ -77,8 +77,8 @@ function Reservation1Page({prices})
                 <div className="home-main-content">
                     <div className="reserve">
                         <div className="reserve-select-type">
-                            <Material className={`reserve-select-item ${isBuy ? "active" : ""}`} onClick={toggleIsBuy(true)}>سفارش خرید</Material>
-                            <Material className={`reserve-select-item ${isBuy ? "" : "active"}`} onClick={toggleIsBuy(false)}>سفارش فروش</Material>
+                            <Material className={`reserve-select-item ${isBuy ? "active" : ""}`} onClick={toggleIsBuy(true)}>خرید ارز از صرافی</Material>
+                            <Material className={`reserve-select-item ${isBuy ? "" : "active"}`} onClick={toggleIsBuy(false)}>فروش ارز به صرافی</Material>
                         </div>
                         <Select name="productId"
                                 placeholder="نوع ارز"

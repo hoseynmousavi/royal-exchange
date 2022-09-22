@@ -1,13 +1,14 @@
 import {SET_USER} from "./AuthTypes"
 import request from "../../request/request"
 import apiUrlsConstant from "../../constant/apiUrlsConstant"
+import MainActions from "../main/MainActions"
 
 const sendOtp = ({username, cancel}) =>
 {
     return request.post({url: apiUrlsConstant.sendOtp, data: {username}, cancel})
 }
 
-const loginOrSignup = ({username, code, dispatch}) =>
+const loginOrSignup = ({username, code, dispatch, mainDispatch}) =>
 {
     return request.post({url: apiUrlsConstant.login, data: {username, code}})
         .then(res =>
@@ -15,6 +16,7 @@ const loginOrSignup = ({username, code, dispatch}) =>
             const {data: user} = res
             setUser({user, dispatch})
             getUser({dispatch})
+            MainActions.getPrices({dispatch: mainDispatch})
         })
 }
 
