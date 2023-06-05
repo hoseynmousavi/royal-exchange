@@ -8,6 +8,7 @@ const toastConstant = {
     unValidUrl: "آدرس وارد شده معتبر نیست",
     unValidPassword: "پسورد انتخابی باید حداقل ۶ کاراکتر باشد",
     unValidPost: "کد پستی وارد شده معتبر نیست",
+    unValidAddress: "آدرس وارد شده کامل نیست",
     profileUpdated: "پروفایل با موفقیت بروز شد",
     selectFieldsFirst: "لطفا ابتدا ارز و تعداد را مشخص کنید",
     selectFieldsFirstTime: "لطفا ابتدا ارز و تعداد و تاریخ را مشخص کنید",

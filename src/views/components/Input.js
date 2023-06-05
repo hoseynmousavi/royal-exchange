@@ -97,6 +97,14 @@ function Input({
                 else onChange({name, value: value || required ? null : ""})
                 checkErrTimer()
             }
+            else if (validation === "address")
+            {
+                const value = numberCorrection(e.target.value)
+                setValue(value)
+                if (value.length >= 10) onChange({name, value})
+                else onChange({name, value: value || required ? null : ""})
+                checkErrTimer()
+            }
             else if (validation === "url")
             {
                 const value = numberCorrection(e.target.value.trim())
@@ -169,6 +177,10 @@ function Input({
                 else if (validation === "post")
                 {
                     if (tempValue.length < 10) tempErr = toastConstant.unValidPost
+                }
+                else if (validation === "address")
+                {
+                    if (tempValue.length < 10) tempErr = toastConstant.unValidAddress
                 }
             }
         }
